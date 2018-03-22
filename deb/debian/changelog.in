@@ -1,3 +1,12 @@
+mythtv (2:0.27.7~dummychangelogentry-teg) stretch; urgency=low
+
+  * Dummy changelog entry to bump version to 0.27.7 as
+    this changelog.in in packaging is not automatically updated
+    at present.  This entry allows build-{dsc/debs}.sh to pick
+    up "0.27.7" version at present.
+
+ -- Tom Grigg <tomegrigg@gmail.com>  Thu, 22 Mar 2018 16:47:17 -0700
+
 mythtv (2:0.27.5~dummychangelogentry-manualbuild) jessie; urgency=low
 
   * Dummy changelog entry to bump version to 0.27.5 as
