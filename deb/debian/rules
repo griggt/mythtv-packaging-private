@@ -12,14 +12,18 @@ include debian/mythtv.make
 MYTHTV_CONFIGURE_OPTS +=    --compile-type=profile \
 				--prefix=/usr \
 				--runprefix=/usr \
+				--disable-ccache \
+				--disable-distcc \
                                 --disable-mythlogserver \
-				--enable-crystalhd \
+				--disable-crystalhd \
 				--enable-lirc \
 				--enable-audio-alsa \
 				--enable-audio-oss \
+				--disable-audio-jack \
+				--disable-audio-pulseoutput \
 				--enable-dvb \
 				--enable-ivtv \
-				--enable-firewire \
+				--disable-firewire \
 				--enable-joystick-menu \
 				--with-bindings=perl \
 				--enable-ffmpeg-pthreads \
