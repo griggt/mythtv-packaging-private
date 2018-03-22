@@ -159,11 +159,11 @@ DATE=$(dpkg-parsechangelog -l$DIRECTORY/mythtv/debian/changelog | sed '/^Version
 TODAY=$(date +%Y%m%d)
 pushd `dirname $0` >/dev/null
 PACKAGING_HASH=$(git log -1 --oneline | awk '{ print $1 }')
-if [ "$DATE" != "$TODAY" ]; then \
-	echo "Packaging changes between $DATE and $TODAY:" > $DIRECTORY/mythtv/.gitout
-	GIT_DATE=`echo $DATE | sed 's/^\(.\{4\}\)/\1./; s/^\(.\{7\}\)/\1./'`
-	git log --grep="^deb: " --oneline --since="$GIT_DATE" | sed 's/^/[/; s/ deb:/]/' >> $DIRECTORY/mythtv/.gitout
-fi
+#if [ "$DATE" != "$TODAY" ]; then \
+#	echo "Packaging changes between $DATE and $TODAY:" > $DIRECTORY/mythtv/.gitout
+#	GIT_DATE=`echo $DATE | sed 's/^\(.\{4\}\)/\1./; s/^\(.\{7\}\)/\1./'`
+#	git log --grep="^deb: " --oneline --since="$GIT_DATE" | sed 's/^/[/; s/ deb:/]/' >> $DIRECTORY/mythtv/.gitout
+#fi
 popd >/dev/null
 cd $DIRECTORY/mythtv
 
