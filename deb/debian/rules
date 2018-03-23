@@ -161,8 +161,6 @@ override_dh_auto_clean:
 override_dh_installdocs:
 	dh_installdocs
 	#(MythTV) Remove license files from contrib documentation.
-	find debian/mythtv-backend/usr/share/doc/mythtv-backend/contrib \
-		-name "COPYING" -delete
 	rm -f debian/mythtv-common/usr/share/mythtv/themes/Terra/watermarks/README.license
 
 	#(MythWeb)
