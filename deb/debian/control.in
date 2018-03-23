@@ -533,3 +533,7 @@ Replaces: mythtv-common (<< 1:0.22.0~zrc1-0ubuntu1)
 Description: The mythbuntu MythTV Theme
  This package provides the mythbuntu theme for MythTV.
 
+Package: mythtv-fonts-droid
+Architecture: all
+Description: Free font designed for handheld devices
+ The Droid font family consists of Droid Sans, Sans Mono, and Serif.
