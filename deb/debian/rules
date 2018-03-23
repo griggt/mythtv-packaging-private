@@ -21,6 +21,7 @@ MYTHTV_CONFIGURE_OPTS +=    --compile-type=profile \
 				--enable-audio-alsa \
 				--enable-audio-oss \
 				--disable-audio-jack \
+				--disable-audio-pulse \
 				--disable-audio-pulseoutput \
 				--enable-dvb \
 				--enable-ivtv \
