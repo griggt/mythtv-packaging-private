@@ -30,6 +30,7 @@ MYTHTV_CONFIGURE_OPTS +=    --compile-type=profile \
 				--enable-ffmpeg-pthreads \
 				--enable-pic \
 				--perl-config-opts="INSTALLDIRS=vendor" \
+				--disable-libpulse \
 				--enable-libvpx \
 				--enable-sdl \
 				--enable-libmp3lame \
