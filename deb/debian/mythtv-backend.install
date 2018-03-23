@@ -9,10 +9,10 @@ usr/bin/mythpreviewgen
 usr/share/mythtv/backend-config
 
 #Copied in from debian/
-debian/mythtv-setup.desktop 			usr/share/applications
+#debian/mythtv-setup.desktop 			usr/share/applications
 debian/41-mythtv-permissions.rules		lib/udev/rules.d
 debian/mythtv-backend.if-up.d 			etc/network/if-up.d
-debian/mythtv-setup.sh				usr/share/mythtv
+#debian/mythtv-setup.sh				usr/share/mythtv
 
 ## Mythbuntu control centre
 # plugin for mcc-mirobridge
