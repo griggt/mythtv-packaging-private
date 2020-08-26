@@ -537,3 +537,32 @@ Package: mythtv-fonts-droid
 Architecture: all
 Description: Free font designed for handheld devices
  The Droid font family consists of Droid Sans, Sans Mono, and Serif.
+
+Package: mythtv-docker-backend
+Architecture: any
+Depends: mythtv-docker-common,
+         mythtv-transcode-utils,
+         ${shlibs:Depends},
+         python,
+         libjs-jquery,
+         libxml-simple-perl,
+         ${misc:Depends}
+Description: MythTV backend for use in a Docker container
+ Stripped down version of the mythtv-backend package for use in a container.
+
+Package: mythtv-docker-common
+Architecture: any
+Depends: mysql-client | virtual-mysql-client | mysql-client-5.6 | mariadb-client,
+         python,
+         ${shlibs:Depends},
+         ${misc:Depends}
+Description: Pared down common files for MythTV
+ Docker-targeted pared down version of the mythtv-common package.
+
+Package: mythtv-docker-db
+Architecture: all
+Depends: mysql-client | virtual-mysql-client | mysql-client-5.6 | mariadb-client,
+         ${misc:Depends}
+Description: MythTV database files for use in a Docker image
+ Stripped down version of the mythtv-database package intended for use
+ in a mysql-derived Docker container.
