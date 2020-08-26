@@ -541,7 +541,7 @@ Description: Free font designed for handheld devices
 Package: mythtv-docker-backend
 Architecture: any
 Depends: mythtv-docker-common,
-         mythtv-transcode-utils,
+         mythtv-docker-transcode,
          ${shlibs:Depends},
          python,
          libjs-jquery,
@@ -566,3 +566,9 @@ Depends: mysql-client | virtual-mysql-client | mysql-client-5.6 | mariadb-client
 Description: MythTV database files for use in a Docker image
  Stripped down version of the mythtv-database package intended for use
  in a mysql-derived Docker container.
+
+Package: mythtv-docker-transcode
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Utilities used for transcoding MythTV tasks
+ MythTV transcode package that does not depend on mythtv-common.
