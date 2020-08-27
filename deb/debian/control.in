@@ -277,7 +277,7 @@ Description: Personal video recorder application (client)
 Package: libmyth-#ABI#-0
 Architecture: any
 Section: libs
-Depends: ${shlibs:Depends}, libqt4-sql-mysql, ${misc:Depends}
+Depends: ${shlibs:Depends}, libqt4-sql-mysql, locales, ${misc:Depends}
 Conflicts: mythtv (<< 0.7-5), libmyth-0.23-0, libmyth-0.24-0, libmyth-0.25-0, libmyth-0.26-0
 Replaces: mythtv (<< 0.7-5), libmyth-0.23-0, libmyth-0.24-0, libmyth-0.25-0, libmyth-0.26-0
 Description: Common library code for MythTV and add-on modules (runtime)
