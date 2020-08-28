@@ -543,6 +543,8 @@ Architecture: any
 Depends: mythtv-docker-common,
          mythtv-docker-transcode,
          ${shlibs:Depends},
+         iputils-ping,
+         procps,
          python,
          libjs-jquery,
          libxml-simple-perl,
