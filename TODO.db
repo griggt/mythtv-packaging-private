@@ -1,0 +1,69 @@
+Existing files for mythtv-database:
+
+mythtv-database.config          # Configuration script, probably need modified
+mythtv-database.configfiles     # DISCARD list of files for cron
+mythtv-database.cron.weekly     # DISCARD cron jobs
+mythtv-database.dirs            # Keep; installation dirs
+mythtv-database.install         # Keep; installation files
+mythtv-database.postinst        # Probably need, post install script; installs db to MySQL
+mythtv-database.preinst         # DISCARD only needed in certain upgrade cases
+mythtv-database.templates       # ??? debconf variable definitions?
+
+--
+
+mythtv-database.config - What does it do?
+======================
+DEPS: xpath (libxml-xpath-perl)
+
+ * Tries to read database connection info from /etc/mythtv/config.xml
+   and uses it to set configuration variables
+     [uses /usr/bin/xpath, which is from the package libxml-xpath-perl]
+
+     we don't have any other need for the config.xml, so let's skip this,
+     used pass in configuration instead
+
+ * Checks if we can use 'debian-sys-maint' MySQL account as a valid
+   admin user
+
+ * If not, does a bunch of other stuff to figure out the admin user/pass
+ * If 'mysql' client is not installed yet, just assume we can use
+   'debian-sys-main' as our admin account (defer config)
+
+ * Prompt for enablement of public bind config item
+
+mythtv-database.postinst - What does it do?
+========================
+DEPS: ifconfig
+      (neither ipconfig nor ip is included in debian:9-slim
+                                           nor mysql:5.7)
+      Will need to get this at startup when the container boots?
+      How can I then update the database?
+        (probably need an entrypoint script)
+      How fast can I start-stop-start the mysql daemon to make
+      the change that way?
+
+Post install configuration only ($1 == "configure")
+
+ * Fixup of IPv6 bind issue (from preinst -- ignore?)
+
+ * symlink mythtv.cnf into the old location (?)
+
+ * gets debconf variables (host, dbname, user, password, admin user/pass)
+
+ * start mysql server (!) via init script (which won't exist)
+
+ * figure out the IP address of the machine (using ifconfig)
+
+ * twiddle the MySQL config file for public bind
+
+ * check if the MythTV database (prob. 'mythconverg')
+   already exists in MySQL; otherwise attempt to create it
+
+ * Populate skeleton tables in the database if heuristic says they
+   aren't there  [prepare_database()]
+     - Also set BackendServerIP in settings table
+     - Also set MasterServerIP in settings table
+
+ * Update the database permissions [update_database()]
+
+ * Clear out the debconf password settings

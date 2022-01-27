@@ -1,0 +1,62 @@
+Backend build files:
+====================
+
+mythtv-backend.configfiles      # SKIP; logrotate and cron
+mythtv-backend.dirs             # EDIT to remove docs. /var/lib/mythtv as volume. /var/cache/mythtv?
+mythtv-backend.if-up.d          # SKIP; init script to run @ interface up
+mythtv-backend.init             # SKIP; init script
+mythtv-backend.install          # EDIT; remove udev rules, mythtv-setup(?), if-up, backend-config?
+mythtv-backend.links            # SKIP; symlink for mythtv-setup; not used
+mythtv-backend.logrotate        # SKIP. Wow there are a lot of different logs. Can we combine?
+mythtv-backend.postinst         # EDIT to remove irrelevant parts
+mythtv-backend.postrm           # SKIP; post rm irrelevant for a container image
+mythtv-backend.preinst          # SKIP; removing stale configuration files
+mythtv-backend.service          # SKIP; systemd service definition file
+mythtv-backend.upstart          # SKIP; upstart service definition file
+
+TODO: what controls the location of the log file for standalone binaries,
+such as myth{ commflag, jobqueue, filldatabase, previewgen }
+  --> they seem to be mapped by /etc/rsyslog.d/40-mythtv.conf
+
+mythtv-backend.postinst
+=======================
+DEPENDENCIES: mkdir, chown, dpkg-statoverride, getent
+
+ * sets ownership and permissions on MythTV dirs
+
+mythtv-backend package dependencies:
+====================================
+mythtv-common
+mythtv-transcode-utils
+<shared libs>
+cron                 [eliminate]
+wget                 [can we eliminate?]
+xterm                ??
+python               [for metadata scripts]
+libjs-jquery         [for builtin services server?]
+libxml-simple-perl   ??
+libmyth-python       Recommended
+libmythtv-perl       Recommended
+ntp                  Recommended
+
+Transitive deps:
+  via mythtv-common:
+    pwgen, adduser, mysql-client, fonts-liberation, fonts-droid,
+    ttf-dejavu, fonts-tlwg-purisa, python, libxml-xpath-perl,
+    <shared libs>, <misc>
+
+  via mythtv-transcode-utils:  (this is just mythtranscode + logrotate config)
+    <shared libs>
+
+-----
+What can we pare down out of mythtv-common?
+ - Does backend really need themes, or just for mythtv-setup?
+ - What about the fonts? Is that theme driven?
+ - mythshutdown seems optional, could be separate
+ - mythff* seems totally optional
+ - mythmetadatalookup we might need for the backend / testing. could be separate.
+ - mythccextractor. where is this used?
+ - mythutil. could be useful on the backend. again, could be separate.
+ - database backup and restore scripts
+ - internetcontent - this is metadata lookup for mythnetvision plugin?
+ - metadata - split into its own package (I have a fork of this)
